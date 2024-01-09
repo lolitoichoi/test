@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .wap{
+            border: 1px solid blueviolet;
+            width: 500px;
+            height: 500px;
+            text-align: center;
+            margin: auto;
+        }
+        .h3 {
+            color: blue;
+        }
+    </style>
+    <form class="wap">
+        <h3>Bảng điểm của em</h3>
+        Semester 1:
+        <input type="text" id="s1"></input><br></br>
+        Semester 2:
+        <input type="text" id="s2"></input><br></br>
+        Year :
+        <select id="year">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select><br></br>
+        Summary :
+        <input type="text" id="sum"></input><br></br>
+        <input type="button" onclick="functionOK()" value="OK"></input>
+        <input type="button" onclick="functionCancle()" value="Cancle"></input>
+
+    </form>
+    
+    <script>
+        function functionOK(){
+            var hk1 = parseInt(document.getElementById("s1").value);
+            var hk2 = parseInt(document.getElementById("s2").value);
+            var y = document.getElementById('year');
+            var value = y[y.selectedIndex].value;
+
+            var result;
+            if(value == 1){
+                result = ((hk1+(hk2*3))/3);
+            }
+            else if(value == 2){
+                result = ((hk1+(hk2*3))/4);
+            }
+            else if(value == 3){
+                result = ((hk1+(hk2*3))/5);
+            }
+            document.getElementById("sum").value = result;
+            }
+        function functionCancle(){
+            document.getElementById("s1").value = "";
+            document.getElementById("s2").value = "";
+            document.getElementById("s3").value = "";
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>A function is triggered when the user releses a key in the iput field. 
+       The function output the actual key/letter that was released inside the text field
+    </p>
+    Enter your name first : <input type="text" id="fname" onkeyup="myFunction()">
+    Enter your name second : <input type="text" id="fusername" onkeyup="myFunction()">
+
+    <p>My name is : <span id="demo"></span></p>
+    <script>
+        function myFunction(){
+            var x = parentInt(document.getElementById("fname").value);
+            var y = parentInt(document.getElementById("fusername").value);
+            document.getElementById("demo").inertHTML = x+y;
+        }
+    </script>
+</body>
+</html> -->
