@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+    body {
+       font-family: Arial, sans-serif;
+       background-color: #f2f2f2;
+       padding: 20px;
+    }
+
+    input[type="text"], input[type="button"] {
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 5px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    input[type="button"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+    }
+
+    </style>
+
+</head>
+
+<body>
+    Fullname_Name :
+    <input type="text" id="name">
+    <br>
+    Id_Pro :
+    <input type="text" id="id">
+    <br>
+    Name_Pro :
+    <input type="text" id="namepro">
+    <br>
+    Quantity_Pro :
+    <input type="text" id="quati">
+    <br>
+    Price_Pro :
+    <input type="text" id="pri">
+    <br>
+
+    <input type="button" value="Save" onclick="save()">
+    <input type="button" value="Show" onclick="show()">
+    <input type="button" value="Reset" onclick="reset()">
+
+    <table>
+        <thead class="thead-dark">
+            <tr>
+                <th>Auto_Increment</th>
+                <th>Fullname_Customer</th>
+                <th>Id_pro</th>
+                <th>Name_Pro</th>
+                <th>Quantity_Pro</th>
+                <th>Price_Pro</th>
+            </tr>
+        </thead>
+        <tbody id="tbl"></tbody>
+    </table>
+    
+
+    <script>
+        var arr = [];
+        function save(){
+            var a = {
+                name: document.getElementById('name').value,
+                id: document.getElementById('id').value,
+                namepro: document.getElementById('namepro').value,
+                quati: document.getElementById('quati').value,
+                pri: document.getElementById('pri').value,
+            }
+            console.log(a);
+            arr.push(a);
+        }
+
+        function show(){
+            var html = '';
+            for (i in arr){
+                var n = i;
+                n++;
+                html += "<tr>";
+                html += "<td>" + (n) + "</td>";
+                html += "<td>" + arr[i].name + "</td>";
+                html += "<td>" + arr[i].id + "</td>";
+                html += "<td>" + arr[i].namepro + "</td>";
+                html += "<td>" + arr[i].quati + "</td>";
+                html += "<td>" + arr[i].pri + "</td>";
+                html += "<td>" + parseFloat(arr[i].quati)*parseFloat(arr[i].pri) + "</td>";
+                html += "</tr>";
+            }
+            document.getElementById('tbl').innerHTML = html;
+        }
+
+        function reset(){
+            document.getElementById('name').value = '';
+            document.getElementById('id').value = '';
+            document.getElementById('namepro').value = '';
+            document.getElementById('quati').value = '';
+            document.getElementById('pri').value = '';
+        }
+    
+    </script>
+</body>
+</html>
