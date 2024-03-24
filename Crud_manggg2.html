@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <script src="./js.bootstrap.min.js"></script>
+  <script src="./js.jquery.min.js"></script>
+  <link rel="stylesheet" href="./style.css" />
+  <title>Shop quần áo</title>
+    <script ></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  input[type="button"] {
+    padding: 20px;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  input[type="buttonADD"] {
+    padding: 10px;
+    max-width: 55px;
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #08b8cb;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  input[type="file"],
+    select {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #08b8cb;
+    border-radius: 5px;
+    box-sizing: border-box;
+    }
+
+  input[type="number"],
+    select {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #08b8cb;
+    border-radius: 5px;
+    box-sizing: border-box;
+    }
+
+  input[type="button"]:hover {
+    background-color: #213b57;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 10px;
+    border: 1px solid #3f3b6e;
+    text-align: center;
+  }
+  
+  thead {
+    background-color: #1f3459;
+    color: #fff;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+  
+  tbody tr:hover {
+    background-color: #ffffff;
+  }
+  .form-contro {
+    width: 20px;
+    height: 50px;
+  }
+    </style>
+</head>
+<body style="background-color: rgb(249, 249, 249)">
+  <nav class="navbar navbar-expand-sm ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="javascript:void(0)">HOME</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <input type="button" value="Man" onclick="listTable()" />
+          </li>
+          <li class="nav-item">
+            <input type="button" value="Women" onclick="women1()" />
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input id="searchInput" class="form-control me-2" type="text" placeholder="Search" onkeyup="search()">
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="progress">
+    <div class="progress-bar" style="width:100%"></div>
+  </div>
+  <div class="banner">
+    <h3 style="text-align: center; color:rgb(0, 0, 0)">Shop Thời Trang</h3>
+  </div>
+  <br>
+    <h2>Add Product</h2>
+    <input type="number" id="productID" placeholder="ID" />
+    <input type="text" id="productCode" placeholder="Code Product" />
+    <input type="text" id="productName" placeholder="Name Product " />
+    <input type="file" id="productImage" name="image" accept="image/" />    
+    <input type="number" id="productPri" placeholder="Old Price" />
+    <input type="number" id="productDis" placeholder="New Price" />
+    <input type="text" id="productNSX" placeholder="NSX Product" />
+    <input type="text" id="productChatSP" placeholder="ChatSP Product" />
+    <input type="text" id="productLoaiV" placeholder="LoaiV Product" />
+
+    <select id="productGender">
+      <option value="man">Man</option>
+      <option value="women">Women</option>
+    </select>
+    
+    <input type="buttonADD" value="ADD" onclick="createProduct()" />
+    <input type="button" value="Update" onclick="updateProduct()" />
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Code Product</th>
+          <th>Name Product</th>
+          <th>Images Product</th>
+          <th>Old price</th>
+          <th>New price</th>
+          <th>Update</th> 
+          <th>Delete</th> 
+          <th>Detail Product</th> 
+        </tr>
+      </thead>
+  
+      <tbody id="tbl"></tbody>
+    </table>
+    <div id="detailform" style="display: none">
+      <input type="hidden" id="detailIndex" />
+      <h2>Chi tiết sản phẩm</h2>
+      <input type="text" id="productNSX" placeholder="NSX Product" />
+      <input type="text" id="productChatSP" placeholder="ChatSP Product" />
+      <input type="text" id="productLoaiV" placeholder="LoaiV Product" />
+    </div>
+    
+<script>
+    const man = [
+    {
+      id: 1,
+      name: "Áo thun Mando unisex",
+      code: "TC1025011BA",
+      price: "250.000",
+      image: "./img/ao1.jpg",
+      newPrice: "240.000",
+      noisx: "Đà Nẵng",
+      vatlieu: "Áo thun Mando được làm từ loại vải cao cấp,thoáng mát",
+      loaivai: "Vải thoáng mát",
+    },
+  
+    {
+      id: 2,
+      name: "Áo sơ mi giấu cúc",
+      code: "TC1025011BA",
+      price: "398.000",
+      image: "./img/ao2.jpg",
+      newPrice: "300.000",
+    },
+  
+    {
+      id: 3,
+      name: "Jacket da",
+      code: "TC1025011BA",
+      price: "300.000",
+      image: "./img/ao3.jpg",
+      newPrice: "240.000",
+    },
+  
+    {
+      id: 4,
+      name: "Hoodie nỉ bông",
+      code: "TC1025011BA",
+      price: "400.000",
+      image: "./img/ao4.jpg",
+      newPrice: "350.000",
+    },
+  ];
+  const women = [
+    {
+      id: 1,
+      name: "Chân váy chữ A",
+      code: "TC1025011BA",
+      price: "250.000",
+      image: "./img/nu1.jpg",
+      newPrice: "200.000",
+    },
+  
+    {
+      id: 2,
+      name: "Quần giả váy KMG",
+      code: "TC1025011BA",
+      price: "398.000",
+      image: "./img/nu2.jpg",
+      newPrice: "350.000",
+    },
+  
+    {
+      id: 3,
+      name: "Áo Blazer",
+      code: "TC1025011BA",
+      price: "300.000",
+      image: "./img/nu3.jpg",
+      newPrice: "250.000",
+    },
+  
+    {
+      id: 4,
+      name: "Áo sơ mi",
+      code: "TC1025011BA",
+      price: "400.000",
+      image: "./img/nu4.jpg",
+      newPrice: "350.000",
+    },
+  ];
+  
+  function listTable() {
+    var html = "";
+    for (i in man) {
+      html + "<tr>";
+      html += "<td>" + man[i].id + "</td>";
+      html += "<td>" + man[i].code + "</td>";
+      html += "<td>" + man[i].name + "</td>";
+      html +=
+        "<td><img src=" + man[i].image + " style=height:50px;width:50px></td>";
+      html += "<td>" + man[i].price + "</td>";
+      html += "<td>" + man[i].newPrice + "</td>";
+      html += "<td><button onclick=\"editProduct(" + man[i].id + ", 'man')\">Sửa</button></td>";
+      html += "<td><button onclick=\"deleteProduct(" + man[i].id + ", 'man')\">Xóa</button></td>";
+      html += "<td><button class='detail-btn' onclick='detailProduct(" + i + ")'>Detail</button></td>";
+      html += "</tr>";
+      
+    }
+    document.getElementById("tbl").innerHTML = html;
+  }
+  function women1() {
+    var html = "";
+    for (i in women) {
+      html + "<tr>";
+      html += "<td>" + women[i].id + "</td>";
+      html += "<td>" + women[i].code + "</td>";
+      html += "<td>" + women[i].name + "</td>";
+      html +=
+        "<td><img src=" + women[i].image + " style=height:50px;width:50px></td>";
+      html += "<td>" + women[i].price + "</td>";
+      html += "<td>" + women[i].newPrice + "</td>";
+      html += "<td><button onclick=\"editProduct(" + women[i].id + ", 'women')\">Sửa</button></td>";
+      html += "<td><button onclick=\"deleteProduct(" + women[i].id + ", 'women')\">Xóa</button></td>";
+      html += "<td><button class='detail-btn' onclick='detailProduct(" + i + ")'>Detail</button></td>";
+      html += "</tr>";
+    }
+  
+    document.getElementById("tbl").innerHTML = html;
+  }
+  
+  function previewImage() {
+    var input = document.getElementById("productImage");
+
+    // Kiểm tra nếu đã chọn ảnh
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        // Hiển thị ảnh trước khi thêm
+        preview.src = e.target.result;
+        preview.style.display = "block";
+      };
+
+      // Đọc file ảnh
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function createProduct() {
+    var productID = document.getElementById("productID").value;
+    var productCode = document.getElementById("productCode").value;
+    var productName = document.getElementById("productName").value;
+    var productImage = document.getElementById("productImage").value; 
+    var productPrice = document.getElementById("productPri").value;
+    var productDiscount = document.getElementById("productDis").value;
+    var productNSX = document.getElementById("productNSX").value;
+    var productChatSP = document.getElementById("productChatSP").value;
+    var productLoaiV = document.getElementById("productLoaiV").value;
+    var productGender = document.getElementById("productGender").value;
+    var newProduct = {
+      id: productID,
+      code: productCode,
+      name: productName,
+      image: productImage,
+      price: productPrice,
+      newPrice: productDiscount,
+      nsx: productNSX,
+      chatsp: productChatSP,
+      loaiv: productLoaiV,
+
+    };
+  
+    if (productGender === "man") {
+      man.push(newProduct);
+    } else if (productGender === "women") {
+      women.push(newProduct);
+    }
+  
+    document.getElementById("productID").value = "";
+    document.getElementById("productCode").value = "";
+    document.getElementById("productName").value = "";
+    document.getElementById("productImage").value = "";
+    document.getElementById("productPri").value = "";
+    document.getElementById("productDis").value = "";
+  
+    show(productGender === "man" ? arr : women1);
+  }
+  function editProduct(id, gender) {
+    // Tìm sản phẩm cần sửa trong mảng tương ứng
+    const products = gender === "man" ? man : women;
+    const product = products.find(item => item.id == id);
+    
+    // Hiển thị thông tin sản phẩm lên các trường nhập liệu
+    document.getElementById("productID").value = product.id;
+    document.getElementById("productCode").value = product.code;
+    document.getElementById("productName").value = product.name;
+    document.getElementById("productImage").value = product.image;
+    document.getElementById("productPri").value = product.price;
+    document.getElementById("productDis").value = product.newPrice; 
+    document.getElementById("productGender").value = gender;
+  }
+  
+  function updateProduct() {
+  var productID = document.getElementById("productID").value;
+  var productCode = document.getElementById("productCode").value;
+  var productName = document.getElementById("productName").value;
+  var productImage = document.getElementById("productImage").files[0]; // Corrected line
+  var productPrice = document.getElementById("productPri").value;
+  var productDiscount = document.getElementById("productDis").value;
+  var productGender = document.getElementById("productGender").value;
+  var updatedProduct = {
+    id: productID,
+    code: productCode,                                       
+    name: productName,
+    image: "",
+    price: productPrice,
+    newPrice: productDiscount,
+    nsx: productNSX,
+    chatsp: productChatSP,
+    loaiv: productLoaiV,
+
+  };
+
+  if (productGender === "man") {
+    // Tìm vị trí của sản phẩm trong mảng 'man' và cập nhật thông tin
+    var index = man.findIndex(item => item.id == productID);
+    if (index !== -1) {
+      man[index] = updatedProduct;
+    }
+  } else if (productGender === "women") {
+    // Tìm vị trí của sản phẩm trong mảng 'women' và cập nhật thông tin
+    var index = women.findIndex(item => item.id == productID);
+    if (index !== -1) {
+      women[index] = updatedProduct;
+    } 
+  }
+  
+
+  // Cập nhật lại bảng dữ liệu
+  show(productGender === "man" ? man : women);
+  clearForm();
+
+  // Xóa thông tin đã nhập trong các trường nhập liệu
+  document.getElementById("productID").value = "";
+  document.getElementById("productCode").value = "";
+  document.getElementById("productName").value = "";
+  document.getElementById("productImage").value = "";
+  document.getElementById("productPri").value = "";
+  document.getElementById("productDis").value = "";
+}
+function deleteProduct(id, gender) {
+  // Xác nhận việc xóa sản phẩm
+  if (confirm("Bạn có chắc chắn muốn xóa sản phẩm có ID " + id + "?")) {
+    if (gender === "man") {
+      // Xóa sản phẩm khỏi mảng 'man'
+      for (let i = 0; i < man.length; i++) {
+        if (man[i].id === id) {
+          man.splice(i, 1);
+          break;
+        }
+      }
+    } else if (gender === "women") {
+      // Xóa sản phẩm khỏi mảng 'women'
+      for (let i = 0; i < women.length; i++) {
+        if (women[i].id === id) {
+          women.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    // Cập nhật bảng dữ liệu
+    show(gender === "man" ? man : women);
+  }
+}
+function search() {
+  var keyword = document.getElementById("searchInput").value;
+  searchProduct(keyword);
+}
+
+function searchProduct(keyword) {
+  var searchResults = [];
+  for (var i = 0; i < man.length; i++) {
+    if (man[i].name.toLowerCase().includes(keyword.toLowerCase())) {
+      searchResults.push(man[i]);
+    }
+  }
+  for (var i = 0; i < women.length; i++) {
+    if (women[i].name.toLowerCase().includes(keyword.toLowerCase())) {
+      searchResults.push(women[i]);
+    }
+  }
+  displaySearchResults(searchResults);
+}
+
+function displaySearchResults(results) {
+  var html = "";
+  for (var i = 0; i < results.length; i++) {
+    html += "<tr>";
+    html += "<td>" + results[i].id + "</td>";
+    html += "<td>" + results[i].code + "</td>";
+    html += "<td>" + results[i].name + "</td>";
+    html += "<td><img src='" + results[i].image + "' style='height:50px;width:50px;'></td>";
+    html += "<td>" + results[i].price + "</td>";
+    html += "<td>" + results[i].newPrice + "</td>";
+    html += "<td><button class='edit-btn' onclick='editProduct(" + i + ")'>Edit</button></td>";
+    html += "<td><button class='delete-btn' onclick='confirmDelete(" + i + ")'>Delete</button></td>";
+    html += "</tr>";
+  }
+  document.getElementById("tbl").innerHTML = html;
+}
+
+function detailProduct(index, gender) {
+  const products = gender === "man" ? man : women;
+  // Access product details based on gender and index
+  const product = products[index];
+
+  if (product) {
+    document.getElementById("productNSX").value = product.nsx;
+    document.getElementById("productChatSP").value = product.chatsp;
+    document.getElementById("productLoaiV").value = product.loaiv;
+    document.getElementById("detailform").style.display = "block";
+    document.getElementById("detailIndex").value = index;
+  } else {
+    // Handle potential errors (e.g., invalid index)
+    console.error("Product not found for index:", index);
+  }
+}
+function detaillProduct() {
+  var newnsx = document.getElementById("productNSX").value;
+  var newchatsp = document.getElementById("productChatSP").value;
+  var newloaiv = document.getElementById("productLoaiV").value;
+
+  var indexToDetail = parseInt(
+    document.getElementById("detailIndex").value
+  );
+  man[indexToUpdate].nsx = newnsx;
+  man[indexToUpdate].chatsp = newchatsp;
+  man[indexToUpdate].loaivai = newloaiv;
+  
+  document.getElementById("detailForm").style.display = "none";
+  Food();
+}
+
+
+
+</script>
+</body> 
+</html>
+
